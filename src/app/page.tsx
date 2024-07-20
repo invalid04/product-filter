@@ -5,7 +5,11 @@ import { ChevronDown, Filter } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { useState } from "react";
+
 import { useQuery } from "@tanstack/react-query";
+import axios from 'axios'
+import { QueryResult } from "@upstash/vector";
+import { Product } from "@/db";
 
 const SORT_OPTIONS =[
   {name: 'None', value: 'none'},
@@ -19,10 +23,18 @@ export default function Home() {
     sort: 'none',
   })
 
-  const {} = useQuery({
+  const { data: products } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      
+      const { data } = await axios.post<QueryResult<Product>[]>(
+        'http://localhost:3000/api/products', {
+          filter: {
+            sort: filter.sort,
+          }
+        }
+      )
+
+      return data
     }
   })
 
