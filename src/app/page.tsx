@@ -1,5 +1,11 @@
-import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
+
+const SORT_OPTIONS =[
+  {name: 'None', value: 'none'},
+  {name: 'Price: Low to High', value: 'price-asc'},
+  {name: 'Price: High to Low', value: 'price-desc'},
+] as const
 
 export default function Home() {
   return (
@@ -15,6 +21,10 @@ export default function Home() {
               Sort
               <ChevronDown className='-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500' />
             </DropdownMenuTrigger>
+
+            <DropdownMenuContent align='end'>
+
+            </DropdownMenuContent>
           </DropdownMenu>
         </div>
       </div>
