@@ -2,6 +2,8 @@
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils";
+
 import { useState } from "react";
 
 const SORT_OPTIONS =[
@@ -34,6 +36,10 @@ export default function Home() {
               {SORT_OPTIONS.map((option) => (
                 <button 
                   key={option.name}
+                  className={cn('text-left w-full block px-4 py-2 text-sm', {
+                    'text-gray-900 bg-gray-100': option.value === filter.sort,
+                    'text-gray-500': option.value !== filter.sort
+                  })}
                   onClick={() => {
                     setFilter((prev) => ({
                       ...prev,
