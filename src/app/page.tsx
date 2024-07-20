@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 export default function Home() {
   return (
@@ -9,7 +9,11 @@ export default function Home() {
         </h1>
 
         <div className='flex items-center'>
-          
+          <DropdownMenu>
+            <DropdownMenuTrigger className='group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900'>
+              Sort
+            </DropdownMenuTrigger>
+          </DropdownMenu>
         </div>
       </div>
     </main>
