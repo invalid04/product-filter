@@ -12,7 +12,9 @@ const SORT_OPTIONS =[
 
 export default function Home() {
 
-  const [filter, setFilter] = useState()
+  const [filter, setFilter] = useState({
+    sort: 'none',
+  })
 
   return (
     <main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
@@ -32,9 +34,14 @@ export default function Home() {
               {SORT_OPTIONS.map((option) => (
                 <button 
                   key={option.name}
-                  onClick={option.value}
+                  onClick={() => {
+                    setFilter((prev) => ({
+                      ...prev,
+                      sort: option.value
+                    }))
+                  }}
                 >
-
+                  {option.name}
                 </button>
               ))}
             </DropdownMenuContent>
