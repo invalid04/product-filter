@@ -5,6 +5,7 @@ import { ChevronDown, Filter } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const SORT_OPTIONS =[
   {name: 'None', value: 'none'},
@@ -16,6 +17,13 @@ export default function Home() {
 
   const [filter, setFilter] = useState({
     sort: 'none',
+  })
+
+  const {} = useQuery({
+    queryKey: ['products'],
+    queryFn: async () => {
+      
+    }
   })
 
   return (
