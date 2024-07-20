@@ -7,6 +7,10 @@ export default function Home() {
         <h1 className='text-4xl font-bold tracking-tight text-gray-900'>
           Product Selection
         </h1>
+
+        <div className='flex items-center'>
+          
+        </div>
       </div>
     </main>
   );
