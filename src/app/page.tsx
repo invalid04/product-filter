@@ -1,5 +1,8 @@
+'use client'
+
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 const SORT_OPTIONS =[
   {name: 'None', value: 'none'},
@@ -8,6 +11,9 @@ const SORT_OPTIONS =[
 ] as const
 
 export default function Home() {
+
+  const [filter, setFilter] = useState()
+
   return (
     <main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
       <div className='flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24'>
@@ -23,7 +29,14 @@ export default function Home() {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent align='end'>
+              {SORT_OPTIONS.map((option) => (
+                <button 
+                  key={option.name}
+                  onClick={option.value}
+                >
 
+                </button>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
