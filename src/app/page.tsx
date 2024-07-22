@@ -13,6 +13,7 @@ import type { Product as TProduct } from "@/db";
 
 import Product from "@/components/Products/Product";
 import ProductSkeleton from "@/components/Products/ProductSkeleton";
+import { SUBRESOURCE_INTEGRITY_MANIFEST } from "next/dist/shared/lib/constants";
 
 const SORT_OPTIONS = [
   {name: 'None', value: 'none'},
@@ -98,7 +99,16 @@ export default function Home() {
 
           <div className='hidden lg:block'>
               <ul className='space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900'>
-
+                {SUBCATEGORIES.map((category) => (
+                  <li key={category.name}>
+                    <button 
+                      disabled={!category.selected}
+                      className='disabled:cursor-not-allowed disabled:opacity-60'
+                    >
+                      {category.name}
+                    </button>
+                  </li>
+                ))}
               </ul>
           </div>
 
