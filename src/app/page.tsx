@@ -206,14 +206,14 @@ export default function Home() {
                         <li key={option.value} className='flex items-center'>
                           <input 
                             type='checkbox' 
-                            id={`color-${optionIdx}`} 
+                            id={`size-${optionIdx}`} 
                             onChange={() => {
                               applyArrayFilter({
-                                category: 'color',
+                                category: 'size',
                                 value: option.value
                               })
                             }}
-                            checked={filter.color.includes(option.value)}
+                            checked={filter.size.includes(option.value)}
                             className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500' 
                           />
                           <label 
