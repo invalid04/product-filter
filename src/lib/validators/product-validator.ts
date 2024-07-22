@@ -10,3 +10,5 @@ export const ProductFilterValidator = z.object({
     sort: z.enum(AVAILABLE_SORT),
     price: z.tuple([z.number(), z.number()])
 })
+
+export type ProductState = z.infer<typeof ProductFilterValidator>
