@@ -14,6 +14,10 @@ class Filter {
         filter.push(`${key} ${operator} ${typeof value === 'number' ? value : `'${value}'`}`)
         this.filters.set(key, filter)
     }
+
+    addRaw(key: string, rawFilter: string) {
+        this.filters.set(key, [rawFilter])
+    }
 }
 
 export const POST = async (req: NextRequest) => {
