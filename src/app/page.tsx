@@ -4,7 +4,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/compon
 import { ChevronDown, Filter } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { useQuery } from "@tanstack/react-query";
 import axios from 'axios'
@@ -93,6 +93,9 @@ export default function Home() {
 
   const onSubmit = () => refetch()
 
+  const debouncedSubmit = debounce(onSubmit, 400)
+  const _debouncedSubmit = useCallback(debouncedSubmit, [])
+
   const applyArrayFilter = ({
     category, value
   }: {
@@ -113,7 +116,7 @@ export default function Home() {
       }))
     }
 
-    onSubmit()
+    _debouncedSubmit()
   }
 
   const minPrice = Math.min(filter.price.range[0], filter.price.range[1])
