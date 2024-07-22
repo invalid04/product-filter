@@ -121,6 +121,9 @@ export default function Home() {
                     .map((_, i) => <ProductSkeleton key={i} />)
               }
           </ul>
+
+          
+
         </div>
       </section>
     </main>
