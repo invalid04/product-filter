@@ -62,6 +62,6 @@ export const POST = async (req: NextRequest) => {
         return new Response(JSON.stringify(products))
     } catch (err) {
         console.error(err)
-        return new Response(JSON.stringify({message: 'Internal Error'}))
+        return new Response(JSON.stringify({message: 'Internal Error'}), {status: 500})
     }
 } 
