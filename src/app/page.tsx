@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from 'axios'
 import { QueryResult } from "@upstash/vector";
 import type { Product as TProduct } from "@/db";
+import debounce from 'lodash.debounce'
 
 import Product from "@/components/Products/Product";
 import ProductSkeleton from "@/components/Products/ProductSkeleton";
