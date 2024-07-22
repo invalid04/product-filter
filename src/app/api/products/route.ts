@@ -18,6 +18,15 @@ class Filter {
     addRaw(key: string, rawFilter: string) {
         this.filters.set(key, [rawFilter])
     }
+
+    get() {
+        const parts: string[] = []
+        this.filters.forEach((filter) => {
+            const groupedValues = filter.join(` OR `)
+            parts.push(`(${groupedValues})`)
+        })
+        return parts.join( ' AND ')
+    }
 }
 
 export const POST = async (req: NextRequest) => {
