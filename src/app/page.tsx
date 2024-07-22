@@ -247,18 +247,25 @@ export default function Home() {
                   </AccordionTrigger>
                   <AccordionContent className='pt-6 animate-none'>
                     <ul className='space-y-4'>
-                      {SIZE_FILTERS.options.map((option, optionIdx) => (
-                        <li key={option.value} className='flex items-center'>
+                      {PRICE_FILTERS.options.map((option, optionIdx) => (
+                        <li key={option.label} className='flex items-center'>
                           <input 
                             type='checkbox' 
-                            id={`size-${optionIdx}`} 
+                            id={`price-${optionIdx}`} 
                             onChange={() => {
-                              applyArrayFilter({
-                                category: 'size',
-                                value: option.value
-                              })
+                              setFilter((prev) => ({
+                                ...prev,
+                                price: {
+                                  isCustom: false,
+                                  range: [...option.value]
+                                }
+                              }))
                             }}
-                            checked={filter.size.includes(option.value)}
+                            checked={
+                              !filter.price.isCustom && 
+                              filter.price.range[0] === option.value[0] && 
+                              filter.price.range[1] === option.value[1]
+                            }
                             className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500' 
                           />
                           <label 
