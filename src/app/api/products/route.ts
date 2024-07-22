@@ -34,10 +34,17 @@ export const POST = async (req: NextRequest) => {
 
     const { color, price, size, sort } = ProductFilterValidator.parse(body.filter)
 
+    const filter = new Filter()
+
+    color.forEach((color) => filter.add('color', '=', color))
+    size.forEach((size) => filter.add('size', '=', size))
+    filter.addRaw('price', `price >= ${price[0]} AND price <= ${price[1]}`)
+
     const products = await db.query({
         topK: 12,
         vector: [0, 0, 0],
         includeMetadata: true,
+        filter: filter.hasFilters() ? filter.get() : undefined
     })
 
     return new Response(JSON.stringify(products))
