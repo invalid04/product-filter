@@ -8,6 +8,12 @@ class Filter {
     hasFilters() {
         return this.filters.size > 0
     }
+
+    add(key: string, operator: string, value: string | number) {
+        const filter = this.filters.get(key) || []
+        filter.push(`${key} ${operator} ${typeof value === 'number' ? value : `'${value}'`}`)
+        this.filters.set(key, filter)
+    }
 }
 
 export const POST = async (req: NextRequest) => {
