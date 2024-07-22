@@ -111,6 +111,8 @@ export default function Home() {
         [category]: [...prev[category], value]
       }))
     }
+
+    onSubmit()
   }
 
   const minPrice = Math.min(filter.price.range[0], filter.price.range[1])
