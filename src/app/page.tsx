@@ -250,7 +250,7 @@ export default function Home() {
                       {PRICE_FILTERS.options.map((option, optionIdx) => (
                         <li key={option.label} className='flex items-center'>
                           <input 
-                            type='checkbox' 
+                            type='radio' 
                             id={`price-${optionIdx}`} 
                             onChange={() => {
                               setFilter((prev) => ({
