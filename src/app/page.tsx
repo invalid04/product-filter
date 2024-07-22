@@ -276,6 +276,31 @@ export default function Home() {
                           </label>
                         </li>
                       ))}
+                      <li className='flex justify-center flex-col gap-2'>
+                        <div>
+                          <input 
+                              type='radio' 
+                              id={`price-${PRICE_FILTERS.options.length}`} 
+                              onChange={() => {
+                                setFilter((prev) => ({
+                                  ...prev,
+                                  price: {
+                                    isCustom: true,
+                                    range: [0, 100],
+                                  }
+                                }))
+                              }}
+                              checked={filter.price.isCustom}
+                              className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500' 
+                            />
+                            <label 
+                              htmlFor={`color-${PRICE_FILTERS.options.length}`}
+                              className='ml-3 text-sm text-gray-600'
+                            >
+                              Custom
+                            </label>
+                        </div>
+                      </li>
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
