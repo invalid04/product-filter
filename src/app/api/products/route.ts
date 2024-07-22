@@ -60,7 +60,8 @@ export const POST = async (req: NextRequest) => {
         })
     
         return new Response(JSON.stringify(products))
-    } catch (e) {
-
+    } catch (err) {
+        console.error(err)
+        return new Response(JSON.stringify({message: 'Internal Error'}))
     }
 } 
