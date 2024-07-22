@@ -33,30 +33,34 @@ const AVG_PRODUCT_PRICE = 25
 const MAX_PRODUCT_PRICE = 50
 
 export const POST = async (req: NextRequest) => {
-    const body = await req.json()
+    try {
+        const body = await req.json()
 
-    const { color, price, size, sort } = ProductFilterValidator.parse(body.filter)
+        const { color, price, size, sort } = ProductFilterValidator.parse(body.filter)
+    
+        const filter = new Filter()
+    
+        color.forEach((color) => filter.add('color', '=', color))
+        size.forEach((size) => filter.add('size', '=', size))
+        filter.addRaw('price', `price >= ${price[0]} AND price <= ${price[1]}`)
+    
+        const products = await db.query({
+            topK: 12,
+            vector: [
+                0, 
+                0, 
+                sort === 'none' 
+                    ? AVG_PRODUCT_PRICE 
+                    : sort === 'price-asc' 
+                    ? 0 
+                    : MAX_PRODUCT_PRICE
+            ],
+            includeMetadata: true,
+            filter: filter.hasFilters() ? filter.get() : undefined
+        })
+    
+        return new Response(JSON.stringify(products))
+    } catch (e) {
 
-    const filter = new Filter()
-
-    color.forEach((color) => filter.add('color', '=', color))
-    size.forEach((size) => filter.add('size', '=', size))
-    filter.addRaw('price', `price >= ${price[0]} AND price <= ${price[1]}`)
-
-    const products = await db.query({
-        topK: 12,
-        vector: [
-            0, 
-            0, 
-            sort === 'none' 
-                ? AVG_PRODUCT_PRICE 
-                : sort === 'price-asc' 
-                ? 0 
-                : MAX_PRODUCT_PRICE
-        ],
-        includeMetadata: true,
-        filter: filter.hasFilters() ? filter.get() : undefined
-    })
-
-    return new Response(JSON.stringify(products))
+    }
 } 
