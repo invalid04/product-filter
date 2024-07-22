@@ -43,6 +43,7 @@ const COLOR_FILTERS = {
 export default function Home() {
 
   const [filter, setFilter] = useState({
+    color: [],
     sort: 'none',
   })
 
