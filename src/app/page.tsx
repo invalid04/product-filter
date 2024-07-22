@@ -322,7 +322,15 @@ export default function Home() {
                             'opacity-50': !filter.price.isCustom,
                           })}
                           disabled={!filter.price.isCustom}
-                          onValueChange={}
+                          //onValueChange={}
+                          value={filter.price.isCustom 
+                                ? filter.price.range 
+                                : DEFAULT_CUSTOM_PRICE
+                          }
+                          min={DEFAULT_CUSTOM_PRICE[0]}
+                          defaultValue={DEFAULT_CUSTOM_PRICE}
+                          max={DEFAULT_CUSTOM_PRICE[1]}
+                          step={5}
                         />
                       </li>
                     </ul>
