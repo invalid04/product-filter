@@ -90,7 +90,7 @@ export default function Home() {
     }
   })
 
-  
+  const onSubmit = () => refetch()
 
   const applyArrayFilter = ({
     category, value
