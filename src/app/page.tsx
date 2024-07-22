@@ -13,7 +13,6 @@ import type { Product as TProduct } from "@/db";
 
 import Product from "@/components/Products/Product";
 import ProductSkeleton from "@/components/Products/ProductSkeleton";
-import { SUBRESOURCE_INTEGRITY_MANIFEST } from "next/dist/shared/lib/constants";
 
 const SORT_OPTIONS = [
   {name: 'None', value: 'none'},
