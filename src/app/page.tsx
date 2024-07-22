@@ -15,6 +15,7 @@ import Product from "@/components/Products/Product";
 import ProductSkeleton from "@/components/Products/ProductSkeleton";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ProductState } from "@/lib/validators/product-validator";
+import { Slider } from "@/components/ui/slider";
 
 const SORT_OPTIONS = [
   {name: 'None', value: 'none'},
@@ -315,6 +316,14 @@ export default function Home() {
                             : filter.price.range[1].toFixed(0)}
                           </div>
                         </div>
+
+                        <Slider 
+                          className={cn({
+                            'opacity-50': !filter.price.isCustom,
+                          })}
+                          disabled={!filter.price.isCustom}
+                          onValueChange={}
+                        />
                       </li>
                     </ul>
                   </AccordionContent>
