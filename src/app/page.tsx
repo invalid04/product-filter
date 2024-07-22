@@ -13,6 +13,7 @@ import type { Product as TProduct } from "@/db";
 
 import Product from "@/components/Products/Product";
 import ProductSkeleton from "@/components/Products/ProductSkeleton";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const SORT_OPTIONS = [
   {name: 'None', value: 'none'},
@@ -26,6 +27,18 @@ const SUBCATEGORIES = [
   {name: 'Sweatshirts', selected: false, href: '#'},
   {name: 'Accessories', selected: false, href: '#'},
 ]
+
+const COLOR_FILTERS = {
+  id: 'color',
+  name: 'Color',
+  options: [
+    {value: 'white', label: 'White'},
+    {value: 'beige', label: 'Beige'},
+    {value: 'blue', label: 'Blue'},
+    {value: 'green', label: 'Green'},
+    {value: 'purple', label: 'Purple'},
+  ] as const,
+}
 
 export default function Home() {
 
@@ -109,6 +122,22 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
+
+              <Accordion type='multiple' className='animate-none'>
+                {/* color filter */}
+                <AccordionItem value='color'>
+                  <AccordionTrigger className='py-3 text-sm text-gray-400 hover:text-gray-500'>
+                    <span className='font-medium text-gray-900'>
+                      Color
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className='pt-6 animate-none'>
+                    <ul className='space-y-4'>
+                      {}
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
           </div>
 
           <ul className='lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
@@ -121,8 +150,6 @@ export default function Home() {
                     .map((_, i) => <ProductSkeleton key={i} />)
               }
           </ul>
-
-          
 
         </div>
       </section>
