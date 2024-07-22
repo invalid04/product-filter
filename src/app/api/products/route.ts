@@ -29,6 +29,9 @@ class Filter {
     }
 }
 
+const AVG_PRODUCT_PRICE = 25
+const MAX_PRODUCT_PRICE = 50
+
 export const POST = async (req: NextRequest) => {
     const body = await req.json()
 
@@ -42,7 +45,15 @@ export const POST = async (req: NextRequest) => {
 
     const products = await db.query({
         topK: 12,
-        vector: [0, 0, 0],
+        vector: [
+            0, 
+            0, 
+            sort === 'none' 
+                ? AVG_PRODUCT_PRICE 
+                : sort === 'price-asc' 
+                ? 0 
+                : MAX_PRODUCT_PRICE
+        ],
         includeMetadata: true,
         filter: filter.hasFilters() ? filter.get() : undefined
     })
