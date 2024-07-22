@@ -194,7 +194,7 @@ export default function Home() {
                 </AccordionItem>
 
                 {/* Size Filter */}
-                <AccordionItem value='color'>
+                <AccordionItem value='size'>
                   <AccordionTrigger className='py-3 text-sm text-gray-400 hover:text-gray-500'>
                     <span className='font-medium text-gray-900'>
                       Size
