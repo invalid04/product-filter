@@ -39,8 +39,10 @@ export const POST = async (req: NextRequest) => {
         const { color, price, size, sort } = ProductFilterValidator.parse(body.filter)
     
         const filter = new Filter()
+
+        if(color.length > 0) color.forEach((color) => filter.add('color', '=', color))
+        else if (color.length === 0) filter.addRaw('color', `color = ""`)
     
-        color.forEach((color) => filter.add('color', '=', color))
         size.forEach((size) => filter.add('size', '=', size))
         filter.addRaw('price', `price >= ${price[0]} AND price <= ${price[1]}`)
     
