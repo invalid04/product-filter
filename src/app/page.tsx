@@ -307,7 +307,12 @@ export default function Home() {
                         <div className='flex justify-between'>
                           <p className='font-medium'>Price</p>
                           <div>
-                            {filter.price.isCustom ? }
+                            {filter.price.isCustom 
+                            ? minPrice.toFixed(0) 
+                            : filter.price.range[0].toFixed(0)} -{' '}
+                            {filter.price.isCustom 
+                            ? maxPrice.toFixed(0) 
+                            : filter.price.range[1].toFixed(0)}
                           </div>
                         </div>
                       </li>
